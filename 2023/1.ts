@@ -2,7 +2,7 @@ import { reverse } from "dns";
 import * as fs from "fs";
 
 const file = fs
-  .readFileSync("./adventOfCode/2023/1.txt", { encoding: "utf-8", flag: "r" })
+  .readFileSync("./2023/1.txt", { encoding: "utf-8", flag: "r" })
   .split("\n");
 
 if (!file) throw Error("No file found");
