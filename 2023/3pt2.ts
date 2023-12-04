@@ -9,7 +9,7 @@ file.unshift(".".repeat(file[0]!.length));
 file.push(".".repeat(file[0]!.length));
 
 const arrayOfArrays = file.map((a) => a.split(""));
-// console.log(arrayOfArrays);
+
 let sum = 0;
 
 function checkNeighbors(
@@ -86,11 +86,6 @@ function checkStar(
       neighbors.push(matrix[newRow]![newCol]!);
     }
   });
-
-  //   let surroundingNums = [];
-  //   for (let i = 0; i < neighbors.length; ++i) {
-  //     if (!isNaN(+neighbors[i]!)) surroundingNums.push(neighbors[i]!);
-  //   }
 
   const newdirections = [-1, 0, 1];
 
