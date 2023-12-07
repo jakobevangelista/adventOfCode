@@ -9,8 +9,6 @@ const numSeeds = seeds.map((seed) => {
   return parseInt(seed);
 });
 
-const locations: number[] = [];
-
 file.shift()!;
 
 const ranges = file.map((line) => {
@@ -22,35 +20,70 @@ const ranges = file.map((line) => {
   return numLine;
 });
 
-// numSeeds.forEach((seed) => {
-let destination = 377494819;
+ranges.reverse();
 
-ranges.forEach((range) => {
-  let tempDestination = destination;
+let notEmpty = true;
 
-  for (let j = 0; j < range!.length; ++j) {
+let smallestLocation = 0;
+
+while (notEmpty) {
+  let smallestLocationIndex = -1;
+
+  for (let i = 0; i < ranges[0]!.length; ++i) {
+    if (ranges[0]![i]![0]! <= smallestLocation && ranges[0]![i]![2]! > 0) {
+      smallestLocation = ranges[0]![i]![0]!;
+      smallestLocationIndex = i;
+    }
+  }
+  //   console.log("iteration: ", i, " smallestLocation: ", smallestLocation);
+  let tempSmallest = smallestLocation;
+
+  ranges.forEach((range) => {
+    let tempDestination = smallestLocation;
+    // console.log(i, smallestLocation);
+
+    for (let j = 0; j < range!.length; ++j) {
+      if (
+        tempSmallest >= range[j]![0]! &&
+        tempSmallest < range[j]![0]! + range[j]![2]!
+      ) {
+        // console.log("range: ", range[j]![i]!);
+        // console.log("smallestLocation: ", tempSmallest);
+        tempSmallest = range[j]![1]! + (tempSmallest - range[j]![0]!);
+        break;
+      }
+    }
+
+    if (tempDestination !== tempSmallest) {
+      return;
+    }
+  });
+  //   console.log("seed number: ", tempSmallest);
+
+  for (let i = 0; i < numSeeds.length; i += 2) {
     if (
-      destination >= range[j]![1]! &&
-      destination < range[j]![1]! + range[j]![2]!
+      tempSmallest >= numSeeds[i]! &&
+      tempSmallest < numSeeds[i + 1]! + numSeeds[i]!
     ) {
-      destination = range[j]![0]! + (destination - range[j]![1]!);
-      break;
+      console.log(smallestLocation);
+      notEmpty = false;
     }
   }
 
-  if (tempDestination !== destination) {
-    return;
+  smallestLocation++;
+
+  if (smallestLocationIndex < 0) {
+    continue;
+  } else {
+    ranges[0]![smallestLocationIndex]![0]!++;
+    ranges[0]![smallestLocationIndex]![2]!--;
   }
-});
 
-locations.push(destination);
-// });
-
-let lowest = Infinity;
-
-locations.forEach((location) => {
-  if (location < lowest) {
-    lowest = location;
+  let allEqual = ranges[0]!.every((subArray) => subArray[2] === 0);
+  if (allEqual) {
+    notEmpty = false;
   }
-});
-console.log(lowest);
+}
+
+// 3516801060 too high
+// 377494819 too high

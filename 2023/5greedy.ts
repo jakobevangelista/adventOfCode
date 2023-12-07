@@ -1,23 +1,13 @@
 import * as fs from "fs";
 
 const file = fs
-  .readFileSync("./2023/5example.txt", { encoding: "utf-8", flag: "r" })
+  .readFileSync("./2023/5.txt", { encoding: "utf-8", flag: "r" })
   .split("\n\n");
 
 const seeds = file[0]!.split(":")[1]!.trim().split(" ");
 const numSeeds = seeds.map((seed) => {
   return parseInt(seed);
 });
-
-const parseSeeds: number[] = [];
-
-// for (let i = 0; i < numSeeds.length; i += 2) {
-//   for (let j = numSeeds[i]!; j < numSeeds[i]! + numSeeds[i + 1]!; ++j) {
-//     parseSeeds.push(j);
-//   }
-// }
-
-const locations: number[] = [];
 
 let lowest = Infinity;
 
@@ -71,20 +61,20 @@ for (let i = 0; i < numSeeds.length; i += 2) {
 //     lowest = location;
 //   }
 // });
-// console.log(lowest);
+console.log(lowest);
 
-const array = [
-  127158107, 70478641, 1312864011, 239072070, 374323335, 56931769, 4225564962,
-  942540950, 1254705509, 197937586,
-];
+// const array = [
+//   127158107, 70478641, 1312864011, 239072070, 374323335, 56931769, 4225564962,
+//   942540950, 1254705509, 197937586,
+// ];
 
-let smallestNumber = Infinity;
-array.map((element) => {
-  if (element < smallestNumber) {
-    smallestNumber = element;
-  }
-});
-console.log(smallestNumber);
+// let smallestNumber = Infinity;
+// array.map((element) => {
+//   if (element < smallestNumber) {
+//     smallestNumber = element;
+//   }
+// });
+// console.log(smallestNumber);
 
 // 127158107
 // 70478641
