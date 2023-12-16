@@ -1,39 +1,9 @@
 import * as fs from "fs";
 
 let file = fs
-  .readFileSync("./2023/7.txt", { encoding: "utf-8", flag: "r" })
+  .readFileSync("./2023/7example.txt", { encoding: "utf-8", flag: "r" })
   .split("\n");
 
-// file = file.map((line) => {
-//   return [line[0]
-//     .replaceAll("K", "B")
-//     .replaceAll("Q", "C")
-//     .replaceAll("J", "D")
-//     .replaceAll("T", "E")
-//     .replaceAll("9", "F")
-//     .replaceAll("8", "G")
-//     .replaceAll("7", "H")
-//     .replaceAll("6", "I")
-//     .replaceAll("5", "J")
-//     .replaceAll("4", "K")
-//     .replaceAll("3", "L")
-//     .replaceAll("2", "M")];
-// });
-
-// file = file.replaceAll("K", "B");
-// file = file.replaceAll("Q", "C");
-// file = file.replaceAll("J", "D");
-// file = file.replaceAll("T", "E");
-// file = file.replaceAll("9", "F");
-// file = file.replaceAll("8", "G");
-// file = file.replaceAll("7", "H");
-// file = file.replaceAll("6", "I");
-// file = file.replaceAll("5", "J");
-// file = file.replaceAll("4", "K");
-// file = file.replaceAll("3", "L");
-// file = file.replaceAll("2", "M");
-
-// const handMap = new Map<string, number>();
 type handTuple = [string, number];
 let handList: handTuple[] = [];
 
@@ -61,10 +31,8 @@ let distinguishedHands: [number, number, Map<string, number>, string][] = [];
 
 handList.forEach((handLine, i) => {
   const hand = handLine[0];
-  //   console.log(hand);
 
   const handType = new Map<string, number>();
-  //   console.log(hand);
 
   for (let i of hand) {
     if (handType.has(i)) {
@@ -264,6 +232,7 @@ console.log(answer);
 // 249593028 wrong
 // 250798180 wrong
 // 250919978
+// 250849577
 // 250849577
 
 //99Q2J 128
